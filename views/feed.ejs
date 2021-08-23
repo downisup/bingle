@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/birthday.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/feed.css">
+    <script type="text/javaScript" src="js/birthday.js"></script>
+    <!-- script is not working for bootstrapcdn -->
+    <title>feed</title>
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #242526;">
+		<a class="navbar-brand" href="/birthday" style="color:#e6e6e6">Bingle!</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="searchrl">
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" onkeyup="search(this.value)" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+		  </form>
+		  <br>
+		  
+		  
+		</div>
+		  
+		
+		  
+
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="navbar-brand">
+					<p style="color: #e6e6e6;">Hi, <%= user.username %></p>
+				</li>
+
+			    <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="./icons/message.webp" width="40" height="40"  alt="">
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">need to put the user.messages </a>
+					<a class="dropdown-item" href="#">recent 5</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Add a route to go to messages page page!</a>
+				  </div>
+			    </li>
+
+			    <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="./icons/followreqinactive.png" width="40" height="40"  alt="">
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">need to put the friend request here </a>
+					<a class="dropdown-item" href="#">recent 5</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Add a route to go to all recieved request page</a>
+				  </div>
+				</li>
+
+			   <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  <img src="./icons/notification.webp" width="40" height="40"  alt="">
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item" href="#">add a link to notification page </a>
+				  <a class="dropdown-item" href="#">recent 5</a>
+				  <div class="dropdown-divider"></div>
+				  <a class="dropdown-item" href="#">Add a route to go to notificaitons page!</a>
+				</div>
+			   </li>
+
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="./icons/settings.png" width="40" height="40"  alt="">
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">add a route to settings page -> </a>
+					<a class="dropdown-item" href="#"> add route to help, feedback page -></a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item btn btn-secondary" href="/logout">Logout</a>
+				  </div>
+			  </li>
+			</ul>
+
+		  
+		 
+		</div>
+	  </nav>
+
+	  
+      <div class="main">
+		<div class="main-left">
+			<div class="serarchrrl" style="display: flex; flex-direction: row;">
+				<div class="resultdiv">
+					<div class="result" id="searchresult">
+			
+					</div>
+					<br>
+				</div>
+			</div>
+		<div class="changeprofilepicture">
+			<form action="/profilepicture" method="post" enctype="multipart/form-data">
+				<input type="file" name="avatar"/>
+				<button type="submit">click to upload</button>
+	  		</form>
+		</div>
+
+		<form action="/birthday/<%=user.id%>?_method=PUT" method="POST" id="update_username">
+			<input type="text" name="username" id="username">
+		
+			<button type="submit">click to update</button>
+		</form>
+
+		<div id="logout-btn">
+			<p>
+				<a href="/logout" class="btn btn-secondary">Logout</a>
+			</p>
+		</div>
+
+		<div>
+			<form action="/birthday/<%=user.id%>/<%=user.username%>" method="post">
+			<button type="submit">click this button to see the blog posts</button>
+			</form>
+		</div>
+	
+		</div>
+        <div class="main-center">	
+            <div class="addpostdiv">
+            <!--add the profile pic here-->
+                <button type="button" class="addpostbutton" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">whats on your mind, <%=user.username%></button>
+            </div>
+        
+    <%for(var blog of post){%>
+        <%console.log("author = "+blog.author)%>
+        <%console.log("username = "+user.username)%>
+        <%if(blog.author != user.username){%>
+        
+            <div class="card">
+                <div class="image">
+                    <span><img src="" alt="can not get image"  ></span> 
+                    <!-- profile picture here -->
+					<button onclick="postoptionbutton(this)" class="postoptionbutton" data-postid="<%=blog._id%>"
+						id="postoptionbutton<%=blog._id%>" data-state="closed"><h4>...</h4>
+				</button>
+				<div class="postoptioncontent" id="postoptioncontent<%=blog._id%>">
+					<ul>
+					<li><button class="optionsforpost" onclick="editpostclick(this)"
+						data-postid="<%=blog._id%>" href="#">Edit Post</button></li>
+					
+					<li><button class="optionsforpost" onclick="deletepost(this)" data-postid="<%=blog._id%>">Delete Post</button></li>
+					</ul>
+				</div>
+				
+	
+                    <span><h5 id="author" style="color: #e4e5e6;"><%=blog.author%></h5></span>
+                </div>
+				<form onsubmit="return false" class="editedinputpostform" id="editedinputpostform<%=blog._id%>"> 
+					<textarea class="editedinputpost"  autofocus value="<%=blog.content%>" 
+						onfocus="this.value = this.value;" id="editedinputpost<%=blog._id%>"></textarea>
+					<button type="submit" class="editedinputpostbutton" id="editedinputpostsubmit<%=blog._id%>" 
+						onclick="updatepost(this)" data-postid="<%=blog._id%>" data-author="<%=user.username%>">update</button>
+				</form>
+                <div class="content">
+                    <h1 style="color: #e4e5e6;"><%=blog.content%></h1>
+                </div>
+                <div class="control-btns">
+					
+
+                    <span class="like-btn">
+                    
+                            <span id="likebtnspan"> 
+                            <button type="submit" id="likebtn" onclick="likedpost(this) " data-postid="<%=blog._id%>"
+                                 data-author="<%=user.username%>">Like</button>
+                            </span>
+                            <span  id="likescounter-<%=blog._id%>" style="color: #e4e5e6;"> <%=blog.likes%> </span>
+                    </span>
+                    <div class="comment-btn" >
+                        <!-- //comments add karna hai -->
+                        <form onsubmit="return false" style="display: inline;">
+                
+                            <input type="text" class="commentinputarea" id="commentinput<%=blog._id%>" name="addcommentinput" placeholder="add comment!"  style="display: none;">
+                            <button type="submit" onclick="submitcommentform(this)" data-blogid="<%=blog._id%>" data-author="<%=user.username%>" style="display: none;"></button>
+                        </form>
+                        
+                        
+                        <button type="submit" class="comment-btn" id="commentbtn-<%=blog._id%>" onclick="commentedonpost(this)" data-postid="<%=blog._id%>" data-author="<%=user.username%>"> comment </button>
+                       </div>
+
+                        <div class="commentdisplay">
+
+                            <%for(var comment of blog.comments){%>
+								
+                                <div class="commentdisplayitemdiv" id="commentdisplayitemdiv<%=comment._id%>">
+                                    <p id="commentdisplaytext<%=blog._id%>"><%=comment.author%>
+                                    <span><button class="optioncomment" id="optionbutton<%=comment._id%>" 
+										data-commentid="<%=comment._id%>" data-state="closed"
+										 onclick="commentoptionclicked(this)"><h4>...</h4></button>
+									<div class="commentoptioncontent" id="commentoptioncontent<%=comment._id%>">
+										<ul>
+										<li><button class="optionsforcomment" onclick="editcommentclick(this)"
+											data-commentid="<%=comment._id%>" href="#">Edit comment</button></li>
+										
+										<li><button class="optionsforcomment" onclick="deletecomment(this)" data-id="<%=comment._id%>">Delete comment</button></li>
+										</ul>
+									</div>
+									</span>
+									<form onsubmit="return false" class="editedinputcommentform" id="editedinputcommentform<%=comment._id%>"> 
+										<textarea class="editedinputcomment"  autofocus value="<%=comment.content%>" 
+											onfocus="this.value = this.value;" id="editedinputcomment<%=comment._id%>"></textarea>
+										<button type="submit" class="editedinputcommentbutton" id="editedinputcommentsubmit<%=comment._id%>" 
+											onclick="updatecomment(this)" data-commentid="<%=comment._id%>" data-author="<%=user.username%>">update</button>
+									</form>
+									<br><h6 class="actualcommentcontent" >
+										<p id="actualcommentcontent<%=comment._id%>"><%=comment.content%></p></h6>
+								</p>
+									<div class="commentinfo">
+                                        <h6> <p id="commentlikesdisplay<%=comment._id%>"><%=comment.likes%></p></h6>	
+                                    </div>
+                                        <span class="commentbuttonspan">
+                                            <button type="submit" class="commentbuttons" id="commentlikebtn<%=blog._id%>" data-commentid="<%=comment._id%>" 
+                                                data-author="<%=user.username%>" data-postid="<%=blog._id%>" onclick="likedcomment(this)">like</button>
+                                            <button type="submit" class="commentbuttons">reply</button>
+                                        </span>
+            
+                                </div>
+                            
+
+                            <%}%> 
+                        </div>
+                            
+                       
+                    <!-- </div>end for div class comment button -->
+                </div><!-- end for div class control btns-->
+        
+            </div><!--end for div class card-->
+        
+        
+        <%}%>
+    <%}%>
+</body>
+<script type="text/javaScript" src="js/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

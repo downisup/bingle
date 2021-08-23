@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>example</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+</head>
+<body>
+	<%- include('partials/messages')  %>
+	<form action="/index" method="POST">
+	    <input type="text" name="username" placeholder="username" value="<%= typeof username!='undefined' ? username : '' %>">
+	    <input type="password" name="password" placeholder="password" value="<%= typeof password!='undefined' ? password:'' %>">
+	    <input type="submit" name="submit" placeholder="submit">
+	</form>
+	<a href="/birthday">birthday</a>
+</body>
+</html>

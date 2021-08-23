@@ -1,0 +1,26 @@
+
+  .card{
+    overflow: hidden;
+    display: flex;
+    border-radius: 5px;
+    background-color: #242526;
+  }
+  .commentdisplayitemdiv{
+    border-radius: 15px;
+    overflow: hidden;
+    width: max-content;
+    justify-content: left;
+    display: block;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    
+    /* width-webkit-fill available  for chrome*/
+    margin: 5px;
+    padding: 3px;
+    border: #3a3b3c solid 1px;
+    color: #e4e5e6;
+      }
+
+      .commentinfodiv{
+        color: #e4e5e6;
+      }

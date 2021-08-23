@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/birthday.css">
+	<script type="text/javaScript" src="js/birthday.js"></script>
+	<script type="text/javaScript" src="js/profile.js"></script>
+</head>
+<body>
+	<!--this page is to display the unique urls public page-->
+	
+	<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #242526;">
+		<a class="navbar-brand" href="/birthday" style="color:#e6e6e6">Bingle!</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="searchrl">
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" onkeyup="search(this.value)" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+		  </form>
+		  <br>
+		  
+		  
+		</div>
+		  
+		
+		  
+
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="navbar-brand">
+					<p style="color: #e6e6e6;">Hi, <%= host.username %></p>
+				</li>
+
+			    <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="./icons/message.webp" width="40" height="40"  alt="">
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">need to put the user.messages </a>
+					<a class="dropdown-item" href="#">recent 5</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Add a route to go to messages page page!</a>
+				  </div>
+			    </li>
+
+			    <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="./icons/followreqinactive.png" width="40" height="40"  alt="">
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">need to put the friend request here </a>
+					<a class="dropdown-item" href="#">recent 5</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Add a route to go to all recieved request page</a>
+				  </div>
+				</li>
+
+			   <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  <img src="./icons/notification.webp" width="40" height="40"  alt="">
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				  <a class="dropdown-item" href="#">add a link to notification page </a>
+				  <a class="dropdown-item" href="#">recent 5</a>
+				  <div class="dropdown-divider"></div>
+				  <a class="dropdown-item" href="#">Add a route to go to notificaitons page!</a>
+				</div>
+			   </li>
+
+			  <li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<img src="./icons/settings.png" width="40" height="40"  alt="">
+				  </a>
+				  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">add a route to settings page -> </a>
+					<a class="dropdown-item" href="#"> add route to help, feedback page -></a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item btn btn-secondary" href="/logout">Logout</a>
+				  </div>
+			  </li>
+			</ul>
+
+		  
+		 
+		</div>
+	  </nav>
+	  <div>
+		  <button class="btn btn-primary"  onclick="sendfriendreq(this)" data-guestid="<%=guest._id%>"> add friend</button>
+	  </div>
+	  
+      <div class="main">
+		<div class="main-left">
+			<div class="serarchrrl" style="display: flex; flex-direction: row;">
+				<div class="resultdiv">
+					<div class="result" id="searchresult">
+			
+					</div>
+					<br>
+				</div>
+			</div>
+			<div>
+				<a href="/feed">feed</a>
+			</div>
+			<div>
+				<button class="btn btn-secondary" style="padding: 10px; margin: 2%;">followers</button>
+				<br>
+			</div>
+			<div>
+				<button class="btn btn-secondary" style="padding: 10px; margin: 2%;">following</button>
+				<br>
+			</div>
+	
+
+			<div id="logout-btn">
+				<p>
+					<a href="/logout" class="btn btn-secondary">Logout</a>
+				</p>
+			</div>
+		</div>
+		<div class="main-center">
+			<%for(var blog of guest.posts){%>
+				<div class="card" id="card<%=blog._id%>">
+					<div class="image">
+						<span><img src="" alt="can not get image"  ></span> 
+						<!-- profile picture here -->
+						<button onclick="postoptionbutton(this)" class="postoptionbutton" data-postid="<%=blog._id%>"
+								id="postoptionbutton<%=blog._id%>" data-state="closed"><h4>...</h4>
+						</button>
+						<div class="postoptioncontent" id="postoptioncontent<%=blog._id%>">
+							<ul>
+							<li><button class="optionsforpost" onclick="editpostclick(this)"
+								data-postid="<%=blog._id%>" href="#">Edit Post</button></li>
+							
+							<li><button class="optionsforpost" onclick="deletepost(this)" data-postid="<%=blog._id%>">Delete Post</button></li>
+							</ul>
+						</div>
+						
+						<span><h5 id="author" style="color: #e4e5e6;"><%=guest.username%></h5>
+						
+						</span>
+					</div>
+					<form onsubmit="return false" class="editedinputpostform" id="editedinputpostform<%=blog._id%>"> 
+						<textarea class="editedinputpost"  autofocus value="<%=blog.content%>" 
+							onfocus="this.value = this.value;" id="editedinputpost<%=blog._id%>"></textarea>
+						<button type="submit" class="editedinputpostbutton" id="editedinputpostsubmit<%=blog._id%>" 
+							onclick="updatepost(this)" data-postid="<%=blog._id%>" data-author="<%=guest.username%>">update</button>
+					</form>
+					
+					<div class="content" >
+						<h1 style="color: #e4e5e6;" id="actualpostcontent<%=blog._id%>"><%=blog.content%></h1>
+					</div>
+					<div class="control-btns">
+						<span class="like-btn">
+						
+								<span id="likebtnspan"> 
+								<button type="submit" id="likebtn" onclick="likedpost(this) " data-postid="<%=blog._id%>" data-author="<%=guest.username%>">Like</button>
+								</span>
+								<span  id="likescounter-<%=blog._id%>" style="color: #e4e5e6;"> <%=blog.likes%> </span>
+						</span>
+			
+						<div class="comment-btn" >
+							<!-- //comments add karna hai -->
+							<form onsubmit="return false" style="display: inline;">
+					
+								<input type="text" class="commentinputarea" id="commentinput<%=blog._id%>" name="addcommentinput" placeholder="add comment!"  style="display: none;">
+								<button type="submit" onclick="submitcommentform(this)" data-blogid="<%=blog._id%>" data-author="<%=guest.username%>" style="display: none;"></button>
+							</form>
+							
+							
+							<button type="submit" class="comment-btn" id="commentbtn-<%=blog._id%>" onclick="commentedonpost(this)" data-postid="<%=blog._id%>" data-author="<%=guest.username%>"> comment </button>
+							
+								 <!--need to add find a way that new comments on post are making new divs too  -->
+							
+							<% for(var post of guest.posts){%>
+								<%if(post._id == blog._id){%>
+								
+							<div class="commentdisplay">
+								<%for(var comment of post.comments){%>
+								<%console.log("commentbody= "+comment.content)%>
+								<div class="commentdisplayitemdiv" id="commentdisplayitemdiv<%=comment._id%>">
+									
+										<p id="commentdisplaytext<%=blog._id%>"><%=comment.author%>
+											<span><button class="optioncomment" id="optionbutton<%=comment._id%>" 
+												data-commentid="<%=comment._id%>" data-state="closed"
+												 onclick="commentoptionclicked(this)"><h4>...</h4></button>
+											<div class="commentoptioncontent" id="commentoptioncontent<%=comment._id%>">
+												<ul>
+												<li><button class="optionsforcomment" onclick="editcommentclick(this)"
+													data-commentid="<%=comment._id%>" href="#">Edit comment</button></li>
+												
+												<li><button class="optionsforcomment" onclick="deletecomment(this)" data-id="<%=comment._id%>">Delete comment</button></li>
+												</ul>
+											</div>
+											</span>
+											<form onsubmit="return false" class="editedinputcommentform" id="editedinputcommentform<%=comment._id%>"> 
+												<textarea class="editedinputcomment"  autofocus value="<%=comment.content%>" 
+													onfocus="this.value = this.value;" id="editedinputcomment<%=comment._id%>"></textarea>
+												<button type="submit" class="editedinputcommentbutton" id="editedinputcommentsubmit<%=comment._id%>" 
+													onclick="updatecomment(this)" data-commentid="<%=comment._id%>" data-author="<%=guest.username%>">update</button>
+											</form>
+											<br><h6 class="actualcommentcontent" >
+												<p id="actualcommentcontent<%=comment._id%>"><%=comment.content%></p></h6>
+										
+										</p>
+									
+										<div class="commentinfo">
+											<h6> <p id="commentlikesdisplay<%=comment._id%>"><%=comment.likes%></p></h6>	
+										</div>
+											<span class="commentbuttonspan">
+												<button type="submit" class="commentbuttons" id="commentlikebtn<%=blog._id%>" data-commentid="<%=comment._id%>" 
+													data-author="<%=guest.username%>" data-postid="<%=blog._id%>" onclick="likedcomment(this)">like</button>
+												<button type="submit" class="commentbuttons">reply</button>
+											</span>
+				
+									</div>
+									
+										<%}%>
+										<%}%>
+									<%}%>
+									
+									
+									
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+				<%}%>
+
+
+		</div>
+
+	    
+		</div>
+	  
+	
+    
+</body>
+
+<script type="text/javaScript" src="js/jquery-3.6.0.min.js"></script>
+</html>

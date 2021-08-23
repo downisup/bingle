@@ -1,0 +1,316 @@
+.form-popup{
+    background-color: #18191a;
+    display: none; justify-content: center; height: 400px;width:auto; border:1px solid;
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+
+  
+  .addpostdiv{
+    border-radius: max(0px, min(8px, calc((100vw - 4px - 100%) * 9999))) / 8px;
+    border-top-left-radius: max(0px, min(8px, -999900% - 39996px + 999900vw)) 8px;
+    border-top-right-radius: max(0px, min(8px, -999900% - 39996px + 999900vw)) 8px;
+    border-bottom-right-radius: max(0px, min(8px, -999900% - 39996px + 999900vw)) 8px;
+    border-bottom-left-radius: max(0px, min(8px, -999900% - 39996px + 999900vw)) 8px;
+    
+    display: flex;
+    justify-content: center;
+    background-color: #242526;
+    padding: 20px;
+    margin: 20px;
+  }
+  .addpostbuttondiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px #242526 solid;
+  }
+  #newPost{
+    padding: 10px;
+  }
+
+
+  body{
+    background-color: #18191a;
+  }
+  .main{
+    display: flex;
+    height: 100%;
+    background-color: #18191a;
+  }
+
+  .main-left{
+    display: flex;
+    flex: 0.2;
+    flex-direction: column;
+    background-color: #18191a;
+    max-height: relative;
+    position: relative;
+    
+  }
+
+
+  @media only screen and (max-width: 700px) {
+    .main-left {
+        display: none;
+    }
+  }
+  /* chrome is giving me problems */
+
+.main-center{
+  display: flex;
+  flex: 0.4;
+  margin-top: 4px;
+  flex-direction: column;
+  margin-left: 15%;
+  max-height: relative;
+  min-width: 10%;
+  position: relative;
+  overflow: hidden;
+  
+  background-color: #18191a;
+}
+
+
+
+
+  .main-right{
+    display: flex;
+    flex: 0.2;
+    flex-direction: row;
+    background-color: #18191a;
+  }
+  .card{
+    overflow: hidden;
+    display: flex;
+    border-radius: 5px;
+    background-color: #242526;
+    margin-top: 4%;
+    margin-bottom: 3%;
+  }
+  .card img{
+    height: 100px;
+    margin: 10px 20px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(255,255,255,0.4);
+  }
+  .card content{
+    color: #f1f1f1;
+  }
+  .control-btns{
+    margin-right: 12px;
+    margin-bottom: 0;
+    margin-left: 12px;
+  }
+
+  .commentform{
+    display:none;
+  }
+
+  .addpostbutton{
+       border-radius:25px;
+       width: fit-content;
+       background: #3a3b3c;
+       padding: 7px;
+       width: 60%;
+       height: inherit;
+       color: #e4e5e6;
+       overflow: hidden;
+      text-overflow: ellipsis;
+
+      white-space: nowrap;
+
+  }
+  #likebtn{
+    cursor: pointer;
+    background: none;
+    margin: 0%;
+    padding: 0;
+    border: none;
+    color: #e4e5e6;
+    overflow: hidden;
+  }
+  #likebtn:hover{
+    color:red;
+    /* filter: blur(10px); */
+  }
+
+  .comment-btn{
+    cursor: pointer;
+    background: none;
+    margin: 0%;
+    padding:0%;
+    border: none;
+    color: #e4e5e6;
+    overflow: auto;
+  }
+  .comment-btn:hover{
+    color: green;
+  }
+  .commentinputarea{
+    display: none;
+    padding: 1px;
+  }
+
+  .commentdisplay{
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;;
+    min-height: max-content;
+    margin: 0%;
+  }
+
+  .commentdisplayitemdiv{
+border-radius: 15px;
+overflow: hidden;
+width: max-content;
+justify-content: left;
+display: block;
+width: -moz-available;
+width: -webkit-fill-available;
+
+/* width-webkit-fill available  for chrome*/
+margin: 5px;
+padding: 3px;
+border: #3a3b3c solid 1px;
+  }
+
+.commentinfo{
+  border-top: #3a3b3c solid 1px;
+  border-bottom: #3a3b3c solid 1px;
+  margin: 2px;
+}
+.optioncomment{
+  background: none;
+  border: none;
+  justify-content: right;
+  display: block;
+  float: right;
+  color:#e4e5e6;
+}
+
+.commentoptioncontent{
+  display: none;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  position: relative;
+
+}
+.commentoptioncontent a{
+  color: #e4e5e6;
+  padding: 12px;
+  text-decoration: none;
+  text-decoration: none;
+  
+}
+ul.ba{
+  list-style-type: none;
+}
+.optionsforcomment{
+  background: none;
+  border: none;
+  color:#e4e5e6;
+}
+.editedinputcomment {
+  display: none;
+  padding-top: 0;
+  padding-left: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: max-content;
+  height: max-content;
+}
+.editedinputcommentform{
+  display: none;
+}
+.editedinputcommentbutton{
+  background: none;
+  border: none;
+  color: aqua;
+}
+
+
+
+
+
+.postoptionbutton{
+  background: none;
+  border: none;
+  justify-content: right;
+  display: block;
+  float: right;
+  color: #e4e5e6;
+}
+.postoptioncontent{
+  display: none;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  position: relative;
+
+}
+.postoptioncontent a{
+  color: #e4e5e6;
+  padding: 12px;
+  text-decoration: none;
+  text-decoration: none;
+  
+}
+.optionsforpost{
+  background: none;
+  border: none;
+  color:#e4e5e6;
+} 
+
+
+.editedinputpost {
+  display: none;
+  padding-top: 0;
+  padding-left: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: max-content;
+  height: max-content;
+}
+.editedinputpostform{
+  display: none;
+}
+.editedinputpostbutton{
+  background: none;
+  border: none;
+  color: aqua;
+}
+
+.result{
+background-color:#242526;
+width: max-content;
+padding-right: 70%;
+top: 5px;
+position: relative;
+}
+
+
+.resultitem{
+  color: #e4e5e6;
+  background: none;
+  border: none;
+}
+.resultdiv{
+  display: none;
+  position: relative; 
+  width: 100%; 
+  top: 0;
+  z-index: 2; 
+  margin-left: 20%;
+  background-color: #242526;
+  min-height: 50px;
+}
